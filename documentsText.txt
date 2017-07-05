@@ -1,0 +1,25 @@
+12
+
+1 dog tom tom dog fish fish rat.
+
+2 tom frog dog tom tom tom tom fish.
+
+3 rat tom fish horse.
+
+4 horse ox fish fish ox ox.
+
+5 fish tom.
+
+6 ox tom.
+
+7 whale ox fish.
+
+8 tom rat dog tom.
+
+9 tom rat tom rat dog.
+
+10 horse fish.
+
+11 ox ox fish.
+
+12 dog dog fish rat.

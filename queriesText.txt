@@ -1,0 +1,15 @@
+7
+
+1 5 fat dog fish
+
+2 4 tom dog
+
+3 3 fish snake bird
+
+4 6 jim ox
+
+5 3 house tom
+
+6 2 fat house bird
+
+7 3 jim ox snake house
