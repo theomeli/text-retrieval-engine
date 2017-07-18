@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2017 Totoros.
+ * Copyright 2017 Theomeli.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,17 +24,13 @@
 
 /* 
  * File:   processFiles.cpp
- * Author: Totoros
+ * Author: Theomeli
  * 
  * Created on June 5, 2017, 1:43 PM
  */
+
 #include "ProcessFiles.h"
-#include <iterator>
-#include <typeinfo>
 #include <iostream>
-#include <cstdlib>
-#include <cctype>
-#include <valarray>
 
 
 using namespace std;
@@ -50,28 +46,30 @@ ProcessFiles::ProcessFiles(): documentsText("documentsText.txt"), queriesText("q
     }
 }
 
+
 ProcessFiles::ProcessFiles(const ProcessFiles& orig)
     :nDocuments(orig.getNDocuments()), nQueries(orig.getNQueries()), nResponses(orig.getNResponses()) {
     documentsTokens = new list<string>[nDocuments + 1];
     list<string>::iterator iter;
-    for (int i = 1; i <= nDocuments; i++) {
+    for (size_t i = 1; i <= nDocuments; i++) {
         for (iter = orig.getDocumentsTokens()[i].begin(); iter != orig.getDocumentsTokens()[i].end(); iter++)
             documentsTokens[i].push_back(*iter);
     }
     
     queriesTokens = new list<string>[nQueries + 1];
-    for (int i = 1; i <= nQueries; i++) {
+    for (size_t i = 1; i <= nQueries; i++) {
         for (iter = orig.getQueriesTokens()[i].begin(); iter != orig.getQueriesTokens()[i].end(); iter++)
             queriesTokens[i].push_back(*iter);
     }
 }
+
 
 ProcessFiles& ProcessFiles::operator =(const ProcessFiles& rightSide) {
    	documentsTokens = new list<string>[rightSide.getNDocuments() + 1];
 
     nDocuments = rightSide.getNDocuments();
     list<string>::iterator iter;
-    for (int i = 0; i <= nDocuments; i++) {
+    for (size_t i = 0; i <= nDocuments; i++) {
         for (iter = rightSide.getDocumentsTokens()[i].begin(); iter != rightSide.getDocumentsTokens()[i].end(); iter++) {
 			documentsTokens[i].push_back(*iter);
         }
@@ -79,7 +77,7 @@ ProcessFiles& ProcessFiles::operator =(const ProcessFiles& rightSide) {
 	queriesTokens = new list<string>[rightSide.getNQueries() + 1];
 
     nQueries = rightSide.getNQueries();
-    for (int i = 0; i <= nQueries; i++) {
+    for (size_t i = 0; i <= nQueries; i++) {
         for (iter = rightSide.getQueriesTokens()[i].begin(); iter != rightSide.getQueriesTokens()[i].end(); iter++)
             queriesTokens[i].push_back(*iter);
     }
@@ -89,26 +87,29 @@ ProcessFiles& ProcessFiles::operator =(const ProcessFiles& rightSide) {
     return *this;
 }
 
+
 ProcessFiles::~ProcessFiles() {
 }
 
+
 string ProcessFiles::makeLower(const string& s) {
-    int sLength = s.length();
+    size_t sLength = s.length();
     string temp(s);
-    for (int i = 0; i < sLength; i++) {
+    for (size_t i = 0; i < sLength; i++) {
         temp[i] = tolower(s[i]);
     }
     
     return temp;
 }
 
+
 string ProcessFiles::removePunct(const string& s, const string& punct) {
     string noPunct; //initialized to empty string
-    int sLength = s.length();
-    int punctLength = punct.length( );
-    for (int i = 0; i < sLength; i++) {
+	size_t sLength = s.length();
+	size_t punctLength = punct.length( );
+    for (size_t i = 0; i < sLength; i++) {
         string aChar = s.substr(i,1); //A one-character string
-        int location = punct.find(aChar, 0);
+		size_t location = punct.find(aChar, 0);
         //Find location of successive characters of src in punct.
         if (location < 0 || location >= punctLength)
             noPunct += aChar;//aChar is not in punct, so keep it
@@ -117,7 +118,7 @@ string ProcessFiles::removePunct(const string& s, const string& punct) {
     return noPunct;
  }
 
-//uses functions makeLower, removePunct
+
 string ProcessFiles::lowerRemovedPunct(const string& s) {
     string punct(",;:.?!'\" \n"); //includes a blank
     string str(s);
@@ -126,8 +127,9 @@ string ProcessFiles::lowerRemovedPunct(const string& s) {
     return removePunct(str, punct);
 }
 
+
 void ProcessFiles::readDocumentsFile(ifstream& stream) {
-    int documentId;
+	size_t documentId;
     string token;
 
     stream >> nDocuments;
@@ -145,13 +147,14 @@ void ProcessFiles::readDocumentsFile(ifstream& stream) {
     }
 }
 
+
 void ProcessFiles::readQueriesFile(ifstream& stream) {
-    int queryId;
-    int nResultsOfQuery;
+	size_t queryId;
+	size_t nResultsOfQuery;
     string token;
     //if integersRead is equal to zero we are waiting another int to be read
     //if it is one, which it means that we have already read one int, we do the mapping
-    int integersRead = 0;
+	size_t integersRead = 0;
 
     stream >> nQueries;
     //we leave queriesTokens[0] blank
@@ -165,7 +168,7 @@ void ProcessFiles::readQueriesFile(ifstream& stream) {
             }
             else if (integersRead == 1) {
                 nResultsOfQuery = atoi(token.c_str());
-                nResponses.insert(pair<int, int>(queryId, nResultsOfQuery));
+				nResponses.insert(pair<size_t, size_t>(queryId, nResultsOfQuery));
                 integersRead = 0;
             }
         }
