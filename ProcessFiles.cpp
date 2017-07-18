@@ -74,7 +74,7 @@ ProcessFiles& ProcessFiles::operator =(const ProcessFiles& rightSide) {
 			documentsTokens[i].push_back(*iter);
         }
     }      
-	queriesTokens = new list<string>[rightSide.getNQueries() + 1];
+    queriesTokens = new list<string>[rightSide.getNQueries() + 1];
 
     nQueries = rightSide.getNQueries();
     for (size_t i = 0; i <= nQueries; i++) {
@@ -105,11 +105,11 @@ string ProcessFiles::makeLower(const string& s) {
 
 string ProcessFiles::removePunct(const string& s, const string& punct) {
     string noPunct; //initialized to empty string
-	size_t sLength = s.length();
-	size_t punctLength = punct.length( );
+    size_t sLength = s.length();
+    size_t punctLength = punct.length( );
     for (size_t i = 0; i < sLength; i++) {
         string aChar = s.substr(i,1); //A one-character string
-		size_t location = punct.find(aChar, 0);
+	size_t location = punct.find(aChar, 0);
         //Find location of successive characters of src in punct.
         if (location < 0 || location >= punctLength)
             noPunct += aChar;//aChar is not in punct, so keep it
@@ -129,7 +129,7 @@ string ProcessFiles::lowerRemovedPunct(const string& s) {
 
 
 void ProcessFiles::readDocumentsFile(ifstream& stream) {
-	size_t documentId;
+    size_t documentId;
     string token;
 
     stream >> nDocuments;
@@ -149,12 +149,12 @@ void ProcessFiles::readDocumentsFile(ifstream& stream) {
 
 
 void ProcessFiles::readQueriesFile(ifstream& stream) {
-	size_t queryId;
-	size_t nResultsOfQuery;
+    size_t queryId;
+    size_t nResultsOfQuery;
     string token;
     //if integersRead is equal to zero we are waiting another int to be read
     //if it is one, which it means that we have already read one int, we do the mapping
-	size_t integersRead = 0;
+    size_t integersRead = 0;
 
     stream >> nQueries;
     //we leave queriesTokens[0] blank
@@ -164,11 +164,11 @@ void ProcessFiles::readQueriesFile(ifstream& stream) {
         if (isdigit(token[0])) {
             if (integersRead == 0) {
                 queryId = atoi(token.c_str());
-				integersRead++;
+		integersRead++;
             }
             else if (integersRead == 1) {
                 nResultsOfQuery = atoi(token.c_str());
-				nResponses.insert(pair<size_t, size_t>(queryId, nResultsOfQuery));
+		nResponses.insert(pair<size_t, size_t>(queryId, nResultsOfQuery));
                 integersRead = 0;
             }
         }
