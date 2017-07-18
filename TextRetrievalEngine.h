@@ -102,13 +102,13 @@ public:
 
 private:
 	//it contains the data from queries and documents files
-	ProcessFiles*											p;
+	ProcessFiles*								p;
 	//it contains the idfs for each term contained in 
 	//private member terms. Boolean part stands for
 	//queries when it is true, documents when is false
-	map<bool, vector<double>>								idfs;
+	map<bool, vector<double>>						idfs;
 	//a set of the terms appeared in documents and queries
-	set<string>												terms;
+	set<string>								terms;
 	//it contains for each vector of terms the frequency
 	//of the particular term. Boolean part stands for 
 	//queries when it is true, documents when is false
@@ -117,11 +117,11 @@ private:
 	//appeared term in a vector of terms. Boolean part
 	//stands for queries when it is true, documents when
 	//is false
-	map<bool, vector<size_t>>								maxFrequencies;
+	map<bool, vector<size_t>>						maxFrequencies;
 	//it represents the weight of a term in a particular
 	//vector of terms. Boolean part stands for queries 
 	//when it is true, documents when is false
-	map<bool, vector<vector<double>>>						weights;
+	map<bool, vector<vector<double>>>					weights;
 
 	/**
 	* It computes the frequency of a particular term in a particular document or query
