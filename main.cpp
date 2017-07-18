@@ -45,10 +45,10 @@ int main(int argc, char** argv) {
     p.readQueriesFile(i2);
     
     TextRetrievalEngine t(&p);
-	t.computeFrequencies();
-	t.initializeIdfs();
+    t.computeFrequencies();
+    t.initializeIdfs();
     t.computeDocsWeight(false);
-	t.computeDocsWeight(true);
+    t.computeDocsWeight(true);
 
-	t.displayResults();
+    t.displayResults();
 }
