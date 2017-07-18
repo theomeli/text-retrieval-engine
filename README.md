@@ -20,3 +20,8 @@ The assumption we do is that index that will be created will be fit in RAM so th
 3 3 data mining
 ```
 The query processing is done following the [vector model](https://en.wikipedia.org/wiki/Vector_space_model) which uses the cosine as similarity function and weights are creating according the formula TF x IDF. 
+
+A sample of the results for the given documents and queries is given: <br />
+![image1](https://user-images.githubusercontent.com/4678649/28319192-e08bda52-6bd5-11e7-87cd-20ba5afa4778.png)
+
+TODOS: refactoring of class ProcessFiles, multithreading processing
