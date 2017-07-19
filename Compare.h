@@ -35,7 +35,6 @@ using namespace std;
 
 struct Compare {
 	bool operator()(pair<int, double> lhs, pair<int, double> rhs) const {
-		bool b = lhs.second < rhs.second;
 		return lhs.second < rhs.second;
     }
 };
