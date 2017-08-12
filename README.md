@@ -1,7 +1,7 @@
 # Text Retrieval Engine
 
-This project implements a parallel information retrieval engine and it will use the core of a multicore system. 
-The project supports two basic functions which is 1) the creation of an inverted index of a documents collection and 2) the processing of a set of queries. More specifically:
+This project implements a parallel information retrieval engine and it will use the cores of a multicore system. 
+The project supports two basic functions 1) the creation of an inverted index of a documents collection and 2) the processing of a set of queries. More specifically:
 
 1. *Index creation*: a txt file is given as an input. In this file each line has the document id and subsequently its words. File's first line contains the number of documents that file has in total. For example: <br />
 ```
@@ -10,7 +10,7 @@ The project supports two basic functions which is 1) the creation of an inverted
 2 this is the second document
 3 this is another document
 ```
-The assumption we do is that index that will be created will be fit in RAM so that it doesn't need to be stored in an external memory.
+The assumption we do is that index that will be created will be fit in RAM so that it doesn't need to be stored in external memory.
 
 2. *Query Processing*: a txt file is given as an input. In this file each line has the query id, the number of answers that will be returned and query words. First line has the number of queries. For example: <br />
 ```
